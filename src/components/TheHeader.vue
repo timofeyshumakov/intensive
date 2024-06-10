@@ -13,8 +13,8 @@ import List from './HeaderList.vue'
 </script>
 
 <template>
-    <header :class="sectionName">
-      <div :class="sectionName + '__container container'">
+    <header class="header">
+      <div class="container">
         <h1>ИНТЕНСИВ <span>ЮЛИИ ВОРМАН</span></h1>
         <nav>
             <List v-bind="props"/>
@@ -29,7 +29,7 @@ import List from './HeaderList.vue'
 h1
   font-size: 1rem
   font-weight: 400
-  text-transform: uppercase
+  color: $white
 
 h1 span
   display: block
@@ -58,13 +58,3 @@ h1 span
   padding-right: 2.1rem
 
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      sectionName: 'header'
-    };
-  },
-};
-</script>

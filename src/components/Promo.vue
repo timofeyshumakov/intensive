@@ -2,17 +2,12 @@
 import Img from './Img.vue';
 import Button from './Button.vue';
 export default {
-  components: { Img, Button},
-  data() {
-    return {
-      sectionName: 'promo'
-    };
-  },
+  components: { Img, Button}
 }
 </script>
 <template>
-    <section :class="sectionName">
-      <div :class="sectionName + '__container container'">
+    <section class="promo">
+      <div class="container">
       <div class="block">
         <div class="top-title">ПЕРВЫЙ В МИРЕ ИНТЕНСИВ</div>
         <div class="title">ПО СКОРОСТНОМУ НАРАЩИВАНИЮ РЕСНИЦ</div>
@@ -28,6 +23,10 @@ export default {
 </template>
 <style scoped lang="sass">
 @import "../vars.sass"
+
+.container
+  overflow: hidden
+  flex-wrap: wrap
 
 .promo
   padding-bottom: 13rem

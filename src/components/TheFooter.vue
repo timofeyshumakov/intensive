@@ -3,10 +3,9 @@ import HeaderList from './HeaderList.vue'
 </script>
 
 <template>
-    <footer :class="sectionName">
-        <div :class="sectionName + '__container container'">
-          <HeaderList v-for="item in items" :key="item.id" :litem="item" />
-          <div>{{ item }}</div>
+    <footer class="footer">
+        <div class="container">
+          <HeaderList v-for="item in items" :litem="item" />
         </div>
     </footer>
 </template>
@@ -15,11 +14,10 @@ import HeaderList from './HeaderList.vue'
 @import "../vars.sass"
 
 .footer
-  padding: 9rem
+  padding: 9rem 0
   background: #251933
 
 .container
-  width: 100%
   display: grid
   grid-template-columns: 1fr 1fr 1fr
 
@@ -40,7 +38,7 @@ import HeaderList from './HeaderList.vue'
   line-height: 1.5
 
 </style>
-<script>
+<script  >
 
 export default {
   components: { HeaderList },
@@ -60,9 +58,8 @@ export default {
           {txt: "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ", link: "#"},
           {txt: "ДОГОВОР-ОФЕРТА", link: "#"},
           {txt: "СВЯЗАТЬСЯ С НАМИ", link: "#"}
-        ],
-      ],
-      sectionName: 'footer'
+        ]
+      ]
   }
 }
 };

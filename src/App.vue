@@ -53,7 +53,11 @@ import './reset.css';
 /*#common*/
 html
   font: 400 14px /1.2 'RobotoCondensed', sans-serif
-  color: $white
+  text-transform: uppercase
+
+h2
+  font-size: 3.57rem
+  line-height: 1.18
 
 .container
   display: flex

@@ -3,7 +3,7 @@ export default {
   props: ['class', 'src', 'alt'],
   computed: {
     format() {
-      return this.src.substring(this.src.lastIndexOf('.') + 1);
+        return this.src.substring(this.src.lastIndexOf('.') + 1);
     },
   }
 }
