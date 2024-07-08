@@ -38,14 +38,14 @@ import './reset.css';
 
 /*#scrollbar*/
 ::-webkit-scrollbar-track
-  background-color: yellow
+  background-color: $white
 
 ::-webkit-scrollbar-thumb
+  background-color: $violet
   border-radius: 0.5rem
 
 ::-webkit-scrollbar-thumb:active
-  background-color: yellow
-  border: 0.1rem solid yellow
+  background-color: $violet-light
 
 ::-webkit-scrollbar
   width: 0.6rem
@@ -58,27 +58,32 @@ html
 h2
   font-size: 3.57rem
   line-height: 1.18
+  margin-bottom: 0.5rem
 
 .container
   display: flex
   padding: 0 2rem
   margin: 0 auto
   box-sizing: content-box
-  max-width: 82rem
+  max-width: 83.5rem
   justify-content: space-between
   align-items: center
+  flex-direction: column
+  gap: 4.3rem
 
 footer
   background: rgba(37, 25, 51, 1)
 
 section:nth-child(odd)
+  padding-top: 12rem
   background: $white
   color: $violet
 
 section:nth-child(even)
   background: $violet
   color: $white
-
+  padding: 12rem 0 10rem
+  
 .logo
   height: 6em
   padding: 1.5em
@@ -91,4 +96,12 @@ a
 footer a
   line-height: 1.5
 
+@media screen and (max-width: 767px)
+  .container
+    padding: 0 1rem
+
+@media screen and (max-width: 479px)
+  .container
+    padding: 0 0.5rem
+    max-width: 314px
 </style>

@@ -12,10 +12,22 @@ export default {
   <picture v-if="format !== 'svg'">
     <img :class="class" :src="`/img/${src}`" :alt="alt" :title="alt"/>
   </picture>
-  <img v-else :src="`/img/${src}`" :alt="alt" :title="alt"/>
+  <img v-else :class="class" :src="`/img/${src}`" :alt="alt" :title="alt"/>
 </template>
 <style lang="sass">
 .main-img
   position: relative
   left: 5.8rem
+
+.tariff-img
+  position: absolute
+  top: -10%
+  right: -10%
+  width: 9rem
+  height: 9rem
+
+.advantages .item-img
+  width: 4.8rem
+  height: 4.8rem
+    
 </style>

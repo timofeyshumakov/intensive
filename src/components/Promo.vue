@@ -23,10 +23,21 @@ export default {
 </template>
 <style scoped lang="sass">
 @import "../vars.sass"
+.main-img
+  position: relative
+  left: 4.8rem
+
+.promo
+  padding: 0
+  padding-bottom: 13rem
+  background: #4c3d74
 
 .container
   overflow: hidden
   flex-wrap: wrap
+  flex-direction: row
+  justify-content: space-between
+  max-width: 82rem
 
 .promo
   padding-bottom: 13rem
@@ -41,6 +52,7 @@ export default {
   display: flex
   flex-direction: row
   gap: 2rem
+  margin-top: -1rem
 
 .top-title
   font-size: 1.43rem
@@ -56,6 +68,7 @@ export default {
 .txt
   font-size: 1.43rem
   line-height: 1.5
-  max-width: 24rem
+  max-width: 25rem
+  margin-top: -1rem
 
 </style>

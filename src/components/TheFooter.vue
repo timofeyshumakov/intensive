@@ -5,7 +5,7 @@ import HeaderList from './HeaderList.vue'
 <template>
     <footer class="footer">
         <div class="container">
-          <HeaderList v-for="item in items" :litem="item" />
+          <HeaderList v-for="item in items" :litem="item" :sectionName="sectionName"/>
         </div>
     </footer>
 </template>
@@ -38,12 +38,13 @@ import HeaderList from './HeaderList.vue'
   line-height: 1.5
 
 </style>
-<script  >
-
+<script >
+const sectionName = "footer";
 export default {
   components: { HeaderList },
   data() {
     return {
+      sectionName,
       items: [
         [
           {txt: "ЮЛИЯ ВОРМАН", link: "#"},

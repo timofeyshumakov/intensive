@@ -1,23 +1,30 @@
-<script setup>
-import List from './HeaderList.vue'
-  const litem = [
-    {txt: "ДЛЯ КОГО?", link: "#"},
-    {txt: "ЧТО БУДЕТ НА ИНТЕНСИВЕ?", link: "#"},
-    {txt: "О ЮЛИИ", link: "#"},
-    {txt: "ТАРИФЫ", link: "#"}
-  ]
-  const props = {
-    litem,
-    className: "menu__list"
-  }
+<script>
+import HeaderList from './HeaderList.vue';
+const sectionName = "header";
+export default {
+  components: { HeaderList },
+  data() {
+    return {
+        sectionName,
+        litem: [
+        {txt: "ДЛЯ КОГО?", link: "#"},
+        {txt: "ЧТО БУДЕТ НА ИНТЕНСИВЕ?", link: "#"},
+      {txt: "О ЮЛИИ", link: "#"},
+      {txt: "ТАРИФЫ", link: "#"}
+        ],
+    }
+    }
+}
 </script>
+
+
 
 <template>
     <header class="header">
       <div class="container">
         <h1>ИНТЕНСИВ <span>ЮЛИИ ВОРМАН</span></h1>
         <nav>
-            <List v-bind="props"/>
+          <HeaderList :litem="litem" :sectionName="sectionName"/>
         </nav>
       </div>
     </header>
@@ -37,24 +44,15 @@ h1 span
 .header
   padding-top: 8rem
   width: 100%
-  background: $violet
+  background: #4c3d74
 
-.header__
-
-  &container
-    flex-direction: row
-
-    justify-content: space-between
+.container
+  flex-direction: row
+  justify-content: space-between
+  max-width: 82rem
 
 .list
   display: flex
   gap: 3.6rem
   padding-right: 0.5rem
-
-.item
-  text-transform: uppercase
-
-.item:nth-child(2)
-  padding-right: 2.1rem
-
 </style>

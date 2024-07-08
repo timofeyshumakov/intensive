@@ -5,6 +5,7 @@ import TypesCard from './TypesCard.vue';
 import SectionFooter from './SectionFooter.vue';
 const sectionName = "types";
 const format = "svg";
+
 export default {
   
   components: { Img, Button, TypesCard, SectionFooter},
@@ -21,9 +22,9 @@ export default {
 }
 </script>
 <template>
-    <section class="promo">
+    <section class="types">
       <div class="container">
-    <h2>ТЕБЕ НА ИНТЕНСИВ ЕСЛИ ТЫ</h2>
+    <h2 class="header">ТЕБЕ НА ИНТЕНСИВ ЕСЛИ ТЫ</h2>
     <div class="cards">
         <TypesCard v-for="card in cards" :card="card" />
     </div>
@@ -34,11 +35,23 @@ export default {
 <style scoped lang="sass">
 @import "../vars.sass"
 
+.header
+    margin-right: 12rem
+
 .container
     flex-direction: column
+    gap: 3rem
 
-.block
-    display: flex
-    width: 100%
-    justify-content: space-between
+.cards
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 6%
+    margin-left: 2.8rem
+
+@media screen and (max-width: 768px)
+    .cards
+        grid-template-columns: repeat(1, 1fr)
+        max-width: 500px
+        gap: 2.7rem
+
 </style>

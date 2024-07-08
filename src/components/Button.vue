@@ -25,4 +25,7 @@ export default {
     background: $violet
     border: 3px solid $violet-light
     
+.tariff-button
+    position: absolute
+    transform: translateX(11%)
 </style>
