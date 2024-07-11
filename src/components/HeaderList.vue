@@ -13,16 +13,16 @@ import Img from './Img.vue';
 </script>
 <template>
     <ul :class = "`${sectionName}__list list`">
-        <li v-if="sectionName !== 'faq' && sectionName !== 'programm'" :class = "`${sectionName}__item item`" v-for="(item, index) in litem">
+        <li v-if="sectionName !== 'faq'" :class = "`${sectionName}__item item`" v-for="(item, index) in litem">
           <Img v-if="item.src !==undefined" class="item-img" :src="item.src" alt="Image of a cat" />
           <a v-if="item.link !== '' && item.link !== undefined"  :href="`${item.link}`" class = "link">{{ item.txt }}</a>
           <span :class="`${sectionName}__item-title`" v-if="item.title !==undefined">{{ item.title }}</span>
-          <span :class="`${sectionName}__txt txt`" v-else-if="sectionName === 'programm'">УРОК {{ index + 1}}. {{ item.txt }}</span>
+          <span :class="`${sectionName}__txt txt`" v-else-if="sectionName === 'programm'"><details>{{ item.details }}<summary>УРОК {{ index + 1}}. {{ item.txt }}</summary></details></span>
           <span :class="`${sectionName}__mark mark`" v-else-if="sectionName === 'tariffs'">{{ index < litem.length - (2 - tariffsIndex) ? '+' : '-' }}</span>
           <span :class="`${sectionName}__txt txt`" v-if="sectionName !== 'programm' && item.link === undefined">{{ item.txt }}</span>
           <span :class="`${sectionName}__mark mark`" v-if="sectionName === 'programm'">+</span>
         </li>
-        <li v-if="sectionName === 'faq' || sectionName === 'programm'" :class = "`${sectionName}__item item`" v-for="(item, index) in litem"><details>{{ item.details }}<summary>{{ item.txt }}</summary></details></li>
+        <li v-if="sectionName === 'faq'" :class = "`${sectionName}__item item`" v-for="(item, index) in litem"><details>{{ item.details }}<summary>{{ item.txt }}</summary></details></li>
     </ul>
 </template>
 
@@ -49,7 +49,6 @@ details summary::before
   right: 0
 
 .txt
-  padding: 1rem
   padding-left: 0
   
 .item
@@ -86,7 +85,9 @@ details summary::before
   &item
     border-bottom: 3px solid
     justify-content: space-between
-
+    padding: 1.5rem 0
+    font-size: 1.3rem
+    
   &item:nth-child(1)
     border-top: 3px solid
 
@@ -98,6 +99,8 @@ details summary::before
   &item
     border-bottom: 3px solid
     justify-content: space-between
+    font-size: 1.3rem
+    padding: 1.5rem 0
 
   &item:nth-child(1)
     border-top: 3px solid

@@ -81,6 +81,9 @@ export default {
   width: 4.5rem
   height: 4.5rem
 
+.programm__section-footer
+  margin-top: 0.85rem
+
 @media screen and (max-width: 1023px)
 
   .section-footer

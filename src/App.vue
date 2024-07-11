@@ -58,7 +58,7 @@ html
 h2
   font-size: 3.57rem
   line-height: 1.18
-  margin-bottom: 0.5rem
+  margin-bottom: 0.6rem
 
 .container
   display: flex

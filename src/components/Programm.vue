@@ -33,7 +33,7 @@ export default {
 <template>
     <section :class="sectionName">
         <div class="container">
-            <h2>ВОТ ТАКАЯ ПРОГРАММА ИНТЕНСИВА</h2>
+            <h2 class="title">ВОТ ТАКАЯ ПРОГРАММА ИНТЕНСИВА</h2>
             <div v-html="htmlText"></div>
             <HeaderList :litem="litem" :markSheme="markSheme" :sectionName="sectionName"/>
             <SectionFooter :sectionName = "sectionName" txt="Все еще думаешь? <p>А места разбирают уже сейчас</p>" />
@@ -48,4 +48,13 @@ export default {
 .programm__section-footer form
   order: -1
 
+
+
+.title
+  align-self: flex-start
+  margin-left: 5rem
+  margin-bottom: 1rem
+
+.container
+  gap: 1.4rem
 </style>

@@ -52,13 +52,13 @@ export default {
 <style scoped lang="sass">
 .advantages
     padding-top: 12rem
-    padding-bottom: 11.9rem
+    padding-bottom: 11.6rem
     
 .list-container
     width: 100%
     display: flex
     flex-direction: column
-    gap: 1.7rem
+    gap: 2.4rem
 
 .list
     grid-template-columns: repeat(auto-fit, minmax(313px, 1fr))
@@ -73,12 +73,20 @@ export default {
 
 h2
     text-align: center
+    
 
 .presentation
     display: flex
     flex-direction: column
     gap: 0.8rem
 
+.presentation .advantages__list
+    row-gap: 1rem
+
+.presentation-title
+    margin-top: -0.5rem
+
+    advantages__list
 .presentation-content
     display: flex
     width: 83rem

@@ -29,5 +29,10 @@ export default {
 .advantages .item-img
   width: 4.8rem
   height: 4.8rem
-    
+
+.presentation-main-img
+  position: relative
+  top: 3.3rem
+  left: -0.6rem
+
 </style>
