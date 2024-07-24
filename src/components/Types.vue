@@ -5,9 +5,29 @@ import TypesCard from './TypesCard.vue';
 import SectionFooter from './SectionFooter.vue';
 const sectionName = "types";
 const format = "svg";
-
+import { ref, onMounted } from 'vue'
 export default {
-  
+  setup() {
+    const sectionRef = ref(null)
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              sectionRef.value.classList.add('fade-in')
+            }, 100)
+            observer.unobserve(entry.target)
+          }
+        })
+      })
+      observer.observe(sectionRef.value)
+    })
+
+    return {
+      sectionRef,
+    }
+  },
   components: { Img, Button, TypesCard, SectionFooter},
   data() {
     return {
@@ -18,13 +38,13 @@ export default {
             {txt: "СПЕЦИАЛИСТ, КОТОРОМУ НЕОБХОДИМЫ ПОДДЕРЖКА И КОМЬЮНИТИ РЯДОМ", img:{src: `${sectionName}/3.${format}`}}
         ],
     }
-    }
+    },
 }
 </script>
 <template>
-    <section class="types">
+    <section class="types" :id="sectionName" ref="sectionRef">
       <div class="container">
-    <h2 class="header">ТЕБЕ НА ИНТЕНСИВ ЕСЛИ ТЫ</h2>
+    <h2 class="types__title title">ТЕБЕ НА ИНТЕНСИВ ЕСЛИ ТЫ</h2>
     <div class="cards">
         <TypesCard v-for="card in cards" :card="card" />
     </div>
@@ -34,9 +54,6 @@ export default {
 </template>
 <style scoped lang="sass">
 @import "../vars.sass"
-
-.header
-    margin-right: 12rem
 
 .container
     flex-direction: column
@@ -49,9 +66,16 @@ export default {
     margin-left: 2.8rem
 
 @media screen and (max-width: 768px)
+
     .cards
         grid-template-columns: repeat(1, 1fr)
         max-width: 500px
         gap: 2.7rem
+        margin: 0 2rem
+
+@media screen and (max-width: 480px)
+    
+    .cards
+        margin: 0
 
 </style>

@@ -3,7 +3,29 @@ import HeaderList from './HeaderList.vue';
 import SectionFooter from './SectionFooter.vue';
 
 const sectionName = "faq";
+import { ref, onMounted } from 'vue'
 export default {
+  setup() {
+    const sectionRef = ref(null)
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              sectionRef.value.classList.add('fade-in')
+            }, 100)
+            observer.unobserve(entry.target)
+          }
+        })
+      })
+      observer.observe(sectionRef.value)
+    })
+
+    return {
+      sectionRef,
+    }
+  },
   components: { HeaderList, SectionFooter },
   data() {
     return {
@@ -21,17 +43,14 @@ export default {
 
 </script>
 <template>
-    <section class="faq">
-        <div class="container">
-            <h2>А ТАКИЕ ВОПРОСЫ МОГУТ БЫТЬ У ВАС</h2>
+    <section class="faq" ref="sectionRef">
+        <div class="faq__container container">
+            <h2 class="faq__title title">А ТАКИЕ ВОПРОСЫ МОГУТ БЫТЬ У ВАС</h2>
             <HeaderList :litem="litem" :sectionName="sectionName"/>
             <SectionFooter :sectionName = "sectionName" txt="У ВАС ЕСТЬ ДРУГОЙ ВОПРОС? НАПИШИТЕ МНЕ В ТЕЛЕГРАМ"/>
         </div>
     </section>
 </template>
 <style scoped lang="sass">
-
-.faq
-    padding-top: 11.5rem
 
 </style>

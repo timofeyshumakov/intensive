@@ -1,14 +1,63 @@
-<script setup>
+<script>
+const sectionName = "footer";
 import HeaderList from './HeaderList.vue'
+import { ref, onMounted } from 'vue'
+export default {
+  setup() {
+    const sectionRef = ref(null)
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              sectionRef.value.classList.add('fade-in')
+            }, 100)
+            observer.unobserve(entry.target)
+          }
+        })
+      })
+      observer.observe(sectionRef.value)
+    })
+
+    return {
+      sectionRef,
+    }
+  },
+  components: { HeaderList },
+  data() {
+    return {
+      sectionName,
+      items: [
+        [
+          {txt: "ЮЛИЯ ВОРМАН"},
+          {txt: "ИНН:"},
+          {txt: "ОГРНИП:"}
+        ],
+        [
+          {txt: "НАВЕРХ", link: "#"},
+          {txt: "Design by @kemfetka", link: "#"}
+        ],
+        [
+          {txt: "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ", link: "#"},
+          {txt: "ДОГОВОР-ОФЕРТА", link: "#"},
+          {txt: "СВЯЗАТЬСЯ С НАМИ", link: "#"}
+        ]
+      ]
+  }
+}
+};
 </script>
 
 <template>
-    <footer class="footer">
+    <footer class="footer" ref="sectionRef">
         <div class="container">
           <HeaderList v-for="item in items" :litem="item" :sectionName="sectionName"/>
         </div>
     </footer>
 </template>
+
+
 
 <style scoped lang="sass">
 @import "../vars.sass"
@@ -37,32 +86,23 @@ import HeaderList from './HeaderList.vue'
 .link
   line-height: 1.5
 
-</style>
-<script >
-const sectionName = "footer";
-export default {
-  components: { HeaderList },
-  data() {
-    return {
-      sectionName,
-      items: [
-        [
-          {txt: "ЮЛИЯ ВОРМАН", link: "#"},
-          {txt: "ИНН:", link: "#"},
-          {txt: "ОГРНИП:", link: "#"}
-        ],
-        [
-          {txt: "НАВЕРХ", link: "#"},
-          {txt: "Design by @kemfetka", link: "#"}
-        ],
-        [
-          {txt: "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ", link: "#"},
-          {txt: "ДОГОВОР-ОФЕРТА", link: "#"},
-          {txt: "СВЯЗАТЬСЯ С НАМИ", link: "#"}
-        ]
-      ]
-  }
-}
-};
+@media screen and (max-width: 767px)
 
-</script>
+  .footer__item
+    justify-content: flex-start
+
+  .container
+    gap: 0.75rem
+
+  .footer
+    padding: 6rem 3rem 6rem 3rem 
+
+  .container
+    grid-template-columns: 1fr
+
+@media screen and (max-width: 360px)
+
+  .footer
+    padding: 4rem 1rem 4rem 1rem 
+
+</style>

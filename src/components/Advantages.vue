@@ -3,7 +3,29 @@ import HeaderList from './HeaderList.vue';
 import Img from './Img.vue';
 const format ="svg";
 const sectionName = "advantages";
+import { ref, onMounted } from 'vue'
 export default {
+  setup() {
+    const sectionRef = ref(null)
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              sectionRef.value.classList.add('fade-in')
+            }, 100)
+            observer.unobserve(entry.target)
+          }
+        })
+      })
+      observer.observe(sectionRef.value)
+    })
+
+    return {
+      sectionRef,
+    }
+  },
   components: { HeaderList, Img },
   data() {
     return {
@@ -28,40 +50,36 @@ export default {
 
 </script>
 <template>
-    <section class="advantages">
+    <section :class="sectionName" :id="sectionName" ref="sectionRef">
         <div class="container">
-            <div class="list-container">
-                <h2>НА ИНТЕНСИВЕ ТЕБЯ ЖДЕТ</h2>
+            <div class="list__container">
+                <h2 class="advantages__title title">НА ИНТЕНСИВЕ ТЕБЯ ЖДЕТ</h2>
                 <HeaderList :litem="litem" :sectionName="sectionName"/>
             </div>
             <div class="presentation">
-                <h2 class="presentation-title">И, КОНЕЧНО, ЮЛИЯ ВОРМАН</h2>
-                <div class="presentation-content">
-                    <div class="content-txt">
+                <h2 class="presentation__title title">И, КОНЕЧНО, ЮЛИЯ ВОРМАН</h2>
+                <div class="presentation__content">
+                    <div class="content__txt">
                         <div class="txt">БОЛЬШЕ 12 ЛЕТ Я НАРАЩИВАЮ РЕСНИЦЫ ЗА 1 ЧАС. В ПРОФЕССИ Я РАЗВИВАЮСЬ С 2008 ГОДА И, ПУТЕМ ПРОБ И ОШИБОК, ДОШЛА ДО ИДЕАЛЬНЫХ РЕЗУЛЬТАТОВ! МОИ ПРОФЕССИОНАЛЬНЫЕ НАВЫКИ СДЕЛАЛИ МЕНЯ МНОГОКРАТНЫМ ПРИЗЕРОМ, А ПОТОМ И СУДЬЕЙ МЕЖДУНАРОДНЫХ ЧЕМПИОНАТОВ ПО НАРАЩИВАНИЮ РЕСНИЦ</div>
                         <div class="txt">Я ОСНОВАЛА СЕТЬ САЛОНОВ VERSUS И ТЕПЕРЬ АКТИВНО ЗАПУСКАЮ СВОИ ОБУЧЕНИЯ ПО СКОРОМТНОМУ НАРАЩИВАНИЮ. ЛОМАЮ СТЕРЕОТИПЫ, УЧУ МАСТЕРОВ ПОДНИМАТЬ ЧЕКИ И ЗАРАБАТЫВАТЬ МИЛЛИОНЫ.</div>
-                        <HeaderList :litem="list2" :sectionName = "sectionName"/>
+                        <HeaderList :litem="list2" sectionName = "presentation"/>
                         <div class="txt last">ВСЕ МОИ НАРАЩИВАНИЯ Я ДЕЛАЮ ЗА 1 - МАКСИМУМ 1.5 ЧАСА ХОЧЕШЬ ТАКЖЕ? СМОТРИ ПРОГРАММУ И ЗАПИСЫВАЙСЯ НА ИНТЕНСИВ</div>
                     </div>
-                    <Img class="presentation-main-img" src="advantages/MARIA_LYADOVA.jpg"/>
+                    <Img class="presentation__main-img" src="advantages/MARIA_LYADOVA.webp" alt="Юлия Ворман"/>
                 </div>
             </div>
         </div>
     </section>
 </template>
 <style scoped lang="sass">
-.advantages
-    padding-top: 12rem
-    padding-bottom: 11.6rem
     
-.list-container
+.list__container
     width: 100%
     display: flex
     flex-direction: column
     gap: 2.4rem
 
 .list
-    grid-template-columns: repeat(auto-fit, minmax(313px, 1fr))
     display: grid
     row-gap: 2rem
     font-size: 1.15rem
@@ -74,32 +92,38 @@ export default {
 h2
     text-align: center
     
+.advantages__
+    
+    &title
+        margin-left: 1rem
 
 .presentation
     display: flex
     flex-direction: column
     gap: 0.8rem
 
-.presentation .advantages__list
-    row-gap: 1rem
+.presentation__list
+    row-gap: 1.7rem
+    grid-template-columns: 1fr 1fr
 
-.presentation-title
-    margin-top: -0.5rem
+.presentation__
+    
+    &title
+        margin-top: -0.5rem
+        margin-left: -19%
 
-    advantages__list
-.presentation-content
-    display: flex
-    width: 83rem
-    gap: 3rem
-    justify-content: flex-start
+    &content
+        display: grid
+        grid-template-columns: 1fr 0.6fr
+        max-width: 83rem
+        gap: 1.5rem
+        justify-content: flex-start
+        align-items: center
+        margin-top: 1.3rem
 
-.presentation-title
-    margin-left: -19rem
-
-.presentation-main-img
-    position: relative
-    top: 3rem
-    left: -1rem
+    &main-img
+        width: 100%
+        max-width: 400px
 
 .container
     gap: 11rem
@@ -111,15 +135,35 @@ h2
 
 .last
     max-width: 505px
-    margin-top: -3rem
+    margin-top: -2.4rem
 
-.presentation-main-img
-    margin: 3rem 0 0 -1rem
-
-.content-txt
+.content__txt
     display: flex
     flex-direction: column
-    gap: 2.4rem
+    gap: 3.8rem
 
+@media screen and (max-width: 912px)
 
+    .presentation__
+        
+        &content
+            grid-template-columns: 1fr
+            grid-template-rows: 1fr
+            align-items: center
+            justify-content: center
+            justify-items: center
+
+        &title
+            margin: 0
+
+    .presentation .advantages__item
+        align-items: center
+
+    .container
+        gap: 7rem
+
+@media screen and (max-width: 360px)
+
+    .container
+        gap: 5rem
 </style>

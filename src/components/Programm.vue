@@ -4,7 +4,29 @@ import Img from './Img.vue';
 import SectionFooter from './SectionFooter.vue';
 const format ="svg";
 const sectionName = "programm";
+import { ref, onMounted } from 'vue'
 export default {
+  setup() {
+    const sectionRef = ref(null)
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              sectionRef.value.classList.add('fade-in')
+            }, 100)
+            observer.unobserve(entry.target)
+          }
+        })
+      })
+      observer.observe(sectionRef.value)
+    })
+
+    return {
+      sectionRef,
+    }
+  },
   components: { HeaderList, Img, SectionFooter },
   data() {
     return {
@@ -21,40 +43,30 @@ export default {
             {txt: "ПУЧОК. КАК БЫСТРО И ПРАВИЛЬНО ФОРМИРОВАТЬ ТЕБЯ, ДРУЖОК?", details: "Давай посмотрим правде в глаза: никто не рождается с кисточкой в руках и идеальным наращиванием ресниц. Все начинается с желания, с усилий, с практики. Я точно знаю, что ты способна на большее, чем ты себе представляешь.  Я буду рядом, чтобы тебя поддерживать, делиться опытом, показывать новые фишки, разбирать твои ошибки (да-да, они будут, но они же и научат!)."},
             {txt: "НАРАЩИВАЕМ ОБЪЕМЫ 2D+ ", details: "Давай посмотрим правде в глаза: никто не рождается с кисточкой в руках и идеальным наращиванием ресниц. Все начинается с желания, с усилий, с практики. Я точно знаю, что ты способна на большее, чем ты себе представляешь.  Я буду рядом, чтобы тебя поддерживать, делиться опытом, показывать новые фишки, разбирать твои ошибки (да-да, они будут, но они же и научат!)."}
         ],
-    }
+      }
     },
-    computed: {
-    textWithParagraph() {
-      return `${sectionName} <p>рыба</p>`;
-    },
-  },
-}
+  }
 </script>
 <template>
-    <section :class="sectionName">
+    <section :class="sectionName" :id="sectionName" ref="sectionRef">
         <div class="container">
-            <h2 class="title">ВОТ ТАКАЯ ПРОГРАММА ИНТЕНСИВА</h2>
-            <div v-html="htmlText"></div>
+            <h2 class="programm__title title">ВОТ ТАКАЯ ПРОГРАММА ИНТЕНСИВА</h2>
             <HeaderList :litem="litem" :markSheme="markSheme" :sectionName="sectionName"/>
             <SectionFooter :sectionName = "sectionName" txt="Все еще думаешь? <p>А места разбирают уже сейчас</p>" />
         </div>
     </section>
 </template>
 <style scoped lang="sass">
+
 .list
-    width: 100%
-    flex-direction: column
+  width: 100%
+  flex-direction: column
 
 .programm__section-footer form
   order: -1
 
-
-
-.title
-  align-self: flex-start
-  margin-left: 5rem
-  margin-bottom: 1rem
-
 .container
   gap: 1.4rem
+
+
 </style>
